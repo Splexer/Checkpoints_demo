@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://caa1o4n6gymk7"]
+
+[ext_resource type="Script" uid="uid://b2us1gqrb1xm3" path="res://objects/checkpoint.gd" id="1_md0ld"]
+[ext_resource type="ArrayMesh" uid="uid://ct1mnqhgd3vr1" path="res://meshes/flag2_stick.res" id="1_t1bj6"]
+[ext_resource type="ArrayMesh" uid="uid://dwvs465tsgujh" path="res://meshes/flag2_cloth.res" id="2_md0ld"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bveun"]
+
+[node name="Checkpoint" type="Area3D" unique_id=294575006]
+collision_layer = 4
+script = ExtResource("1_md0ld")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1788958433]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_bveun")
+
+[node name="Stick" type="MeshInstance3D" parent="." unique_id=1316207436]
+mesh = ExtResource("1_t1bj6")
+
+[node name="Cloth" type="MeshInstance3D" parent="." unique_id=1526798261]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46311614, 0.15)
+mesh = ExtResource("2_md0ld")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1559700038]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5334089, 0)
+visible = false
+billboard = 1
+no_depth_test = true
+text = "press E"
+font_size = 48
+outline_size = 8
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
