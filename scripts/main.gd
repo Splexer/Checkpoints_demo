@@ -27,7 +27,6 @@ func _restart_level()-> void:
 	if active_checkpoint == null:
 		get_tree().reload_current_scene()
 	else:
-		print("sus")
 		player.call_deferred("teleport_to", active_checkpoint.global_position)
 		player.update_coins(last_checkpoint_coins)
 	for object in resettable_objects:
@@ -37,10 +36,8 @@ func _restart_level()-> void:
 	
 		
 func _handle_resettable_object_used(object)-> void:
-	if not resettable_objects.has(object) :
+	if not resettable_objects.has(object) and !object.is_queued_for_deletion():
 		resettable_objects.append(object)
-	else:
-		print("Я ПИДАРАС! ", self)	
 
 func _set_new_checkpoint(checkpoint: Checkpoint)-> void:
 	if active_checkpoint != null:
